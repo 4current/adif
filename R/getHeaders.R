@@ -3,19 +3,25 @@
 #'  This needs to be changes to character base but will probably work
 #'  for the skcc logger for now
 #'
-#'  @param con A file connection
+#'  @param conn A file connection
+#'  @export
+#'  @return A character vector that is the line that caused the exit condition.
 #'  @examples
-#'  getHeaders(file("test.adi", "r"))
-#'  @return character vector:
-#'  If character(1) then it is the line that caused the exit condition.
-#'  If character(0) then it is the end of file
-getHeaders <- function(con) {
+#'  src <- file.path(getwd(),"inst","tests","sample.adi")
+#'  conn <- file(src, open="r")
+#'  res <- getHeaders(conn)
+#'  close(conn)
+#'  res
+getHeaders <- function(conn) {
   headers <- c()
-  line = readLines(con, n = 1)
+  line = readLines(conn, n = 1)
   while (length(line) > 0 && !grepl("<", toupper(line))) {
     headers <- append(headers, line)
-    line = readLines(con, n = 1)
+    line = readLines(conn, n = 1)
   }
-  print(headers)
-  return(line)
+
+  result <- list(headers,line)
+  names(result) <- c("headers", "end_marker")
+
+  return(result)
 }

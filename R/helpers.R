@@ -24,10 +24,6 @@ isEOR <- function(line) {
     grepl("<EOR>", toupper(line))
 }
 
-test_file("./test_helpers.R", reporter="check")
-
-
-
 
 
 

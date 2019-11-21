@@ -4,17 +4,20 @@
 \alias{getHeaders}
 \title{Read adif header lines until an opening "<" is found}
 \usage{
-getHeaders(con)
+getHeaders(conn)
 }
 \description{
 This needs to be changes to character base but will probably work
  for the skcc logger for now
 }
 \details{
-@param con A file connection
+@param conn A file connection
+ @export
+ @return A character vector that is the line that caused the exit condition.
  @examples
- getHeaders(file("test.adi", "r"))
- @return character vector:
- If character(1) then it is the line that caused the exit condition.
- If character(0) then it is the end of file
+ src <- file.path(getwd(),"inst","tests","sample.adi")
+ conn <- file(src, open="r")
+ res <- getHeaders(conn)
+ close(conn)
+ res
 }

@@ -4,14 +4,14 @@
 \alias{getRecord}
 \title{Read adif record lines until an  "<eor>" is found}
 \usage{
-getRecord(con)
+getRecord(conn)
 }
 \description{
 This needs to be changed to character base but will probably work
  for the skcc logger for now
 }
 \details{
-@param con A file connection
+@param conn A file connection
  @keywords adif, headers
  @return a character vector:
      If character(1) then it is the line that caused the exit condition.

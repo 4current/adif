@@ -3,7 +3,7 @@
 #'  This needs to be changed to character base but will probably work
 #'  for the skcc logger for now
 #'
-#'  @param con A file connection
+#'  @param conn A file connection
 #'  @keywords adif, headers
 #'  @return a character vector:
 #'      If character(1) then it is the line that caused the exit condition.
@@ -16,13 +16,16 @@
 #'         currentLine <- getRecord(con)
 #'         }
 
-getRecord <- function(con) {
+getRecord <- function(conn) {
   fields <- c()
-  line = readLines(con, n = 1)
+  line = readLines(conn, n = 1)
   while (length(line) > 0 && !isEOR(line))  {
     fields <- append(fields, line)
-    line = readLines(con, n = 1)
+    line = readLines(conn, n = 1)
   }
-  print(fields)
-  return(line)
+
+  data <- list(fields,line)
+  names(data) <- c("fields", "record_terminator")
+
+  return(data)
 }
