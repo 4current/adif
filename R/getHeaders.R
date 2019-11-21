@@ -1,17 +1,18 @@
 #'  Read adif header lines until an opening "<" is found
 #'
-#'  This needs to be changes to character base but will probably work
-#'  for the skcc logger for now
+#' This needs to be changes to character base but will probably work
+#' for the skcc logger for now
 #'
-#'  @param conn A file connection
-#'  @export
-#'  @return A character vector that is the line that caused the exit condition.
-#'  @examples
-#'  src <- file.path(getwd(),"inst","tests","sample.adi")
-#'  conn <- file(src, open="r")
-#'  res <- getHeaders(conn)
-#'  close(conn)
-#'  res
+#' @param conn A file connection
+#' @export
+#' @return A character vector that is the line that caused the exit condition.
+#' @examples
+#'
+#' src <- file.path(getwd(),"adif","tests","sample.adi")
+#' conn <- file(src, open="r")
+#' res <- getHeaders(conn)
+#' close(conn)
+#' res
 getHeaders <- function(conn) {
   headers <- c()
   line = readLines(conn, n = 1)

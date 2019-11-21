@@ -6,21 +6,25 @@
 \usage{
 getRecord(conn)
 }
+\arguments{
+\item{conn}{A file connection}
+}
+\value{
+a character vector:
+    If character(1) then it is the line that caused the exit condition.
+    If character(0) then it is the end of file
+}
 \description{
 This needs to be changed to character base but will probably work
- for the skcc logger for now
+for the skcc logger for now
 }
-\details{
-@param conn A file connection
- @keywords adif, headers
- @return a character vector:
-     If character(1) then it is the line that caused the exit condition.
-     If character(0) then it is the end of file
- @export
- @examples
-     con = file(fPath, "r")
-     currentLine <- getRecord(con)
-     while ( length(currentLine > 0 ) )  {
-        currentLine <- getRecord(con)
-        }
+\examples{
+src <- file.path(getwd(),"adif","tests","sample.adi")
+conn <- file(src, open="r")
+getHeaders(conn)
+res <- getRecord(conn)
+close(conn)
+res
 }
+\keyword{adif,}
+\keyword{headers}

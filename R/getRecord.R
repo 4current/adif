@@ -1,21 +1,21 @@
-#'  Read adif record lines until an  "<eor>" is found
+#' Read adif record lines until an  "<eor>" is found
 #'
-#'  This needs to be changed to character base but will probably work
-#'  for the skcc logger for now
+#' This needs to be changed to character base but will probably work
+#' for the skcc logger for now
 #'
-#'  @param conn A file connection
-#'  @keywords adif, headers
-#'  @return a character vector:
-#'      If character(1) then it is the line that caused the exit condition.
-#'      If character(0) then it is the end of file
-#'  @export
-#'  @examples
-#'      con = file(fPath, "r")
-#'      currentLine <- getRecord(con)
-#'      while ( length(currentLine > 0 ) )  {
-#'         currentLine <- getRecord(con)
-#'         }
-
+#' @param conn A file connection
+#' @keywords adif, headers
+#' @return a character vector:
+#'     If character(1) then it is the line that caused the exit condition.
+#'     If character(0) then it is the end of file
+#' @export
+#' @examples
+#' src <- file.path(getwd(),"adif","tests","sample.adi")
+#' conn <- file(src, open="r")
+#' getHeaders(conn)
+#' res <- getRecord(conn)
+#' close(conn)
+#' res
 getRecord <- function(conn) {
   fields <- c()
   line = readLines(conn, n = 1)

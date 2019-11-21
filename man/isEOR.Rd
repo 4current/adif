@@ -6,11 +6,15 @@
 \usage{
 isEOR(line)
 }
+\arguments{
+\item{line}{a line from an adif file}
+}
+\value{
+a boolean:
+}
 \description{
 This needs to be changes to character base but will probably work
- for the skcc logger for now
- @param line
- @keywords adif, tag
- @return a boolean:
- @export
+for the skcc logger for now
 }
+\keyword{adif,}
+\keyword{tag}
