@@ -16,8 +16,4 @@ headers <- results[["headers"]]
 expect_vector(headers)
 expect_length(headers, 3)
 
-records <- results[["records"]]
-expect_vector(records)
-expect_length(records, 1)
-
 

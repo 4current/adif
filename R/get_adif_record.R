@@ -24,6 +24,16 @@ get_adif_record <- function(conn) {
     line = readLines(conn, n = 1)
   }
 
+  fore <- gsub("^(.*)<eor>(.*)$","\\1",line,ignore.case = TRUE)
+  aft <- gsub("^(.*)<eor>(.*)$","\\2",line,ignore.case = TRUE)
+
+  if ( nchar(fore) > 0 ) {
+    fields <- append(fields, fore)
+  }
+  if ( nchar(aft) > 0 ) {
+    line <- aft
+  }
+
   data <- list(fields,line)
   names(data) <- c("fields", "record_terminator")
 

@@ -21,3 +21,9 @@ expect(
   failure_message = "failed to detect <EOR>"
 )
 
+context("tag_scan")
+result <- tag_scan( c("xyz <CALL_SIGN:4>W1AW qst") )
+expect_length(result,1)
+expect_equal(result, c("CALL_SIGN"))
+
+
