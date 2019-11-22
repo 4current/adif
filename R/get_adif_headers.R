@@ -14,15 +14,31 @@
 #' close(conn)
 #' res
 get_adif_headers <- function(conn) {
+
   headers <- c()
-  line = readLines(conn, n = 1)
-  while (length(line) > 0 && !grepl("<", toupper(line))) {
+  line <- readLines(conn, n = 1)
+  # Any line that does not contain the eoh tag can be
+  # considered a header
+  while ( length(line) > 0 && ! is_adif_eoh(line) ) {
     headers <- append(headers, line)
-    line = readLines(conn, n = 1)
+    line <- readLines(conn, n = 1)
   }
 
-  result <- list(headers,line)
-  names(result) <- c("headers", "end_marker")
+  # At this point, there may be material before the <EOH>
+  # we can consider this part of the header
+
+  fore <- gsub("^(.*)<eoh>(.*)$","\\1",line,ignore.case = TRUE)
+  aft <- gsub("^(.*)<eoh>(.*)$","\\2",line,ignore.case = TRUE)
+
+  if ( nchar(fore) > 0 ) {
+    headers <- append(headers, fore)
+  }
+  if ( nchar(aft) > 0 ) {
+    line <- aft
+  }
+
+  result <- list( headers, line )
+  names(result) <- c("headers", "records")
 
   return(result)
 }
