@@ -12,14 +12,14 @@
 #' @examples
 #' src <- file.path(getwd(),"adif","tests","sample.adi")
 #' conn <- file(src, open="r")
-#' getHeaders(conn)
-#' res <- getRecord(conn)
+#' get_adif_headers(conn)
+#' res <- get_adif_record(conn)
 #' close(conn)
 #' res
-getRecord <- function(conn) {
+get_adif_record <- function(conn) {
   fields <- c()
   line = readLines(conn, n = 1)
-  while (length(line) > 0 && !isEOR(line))  {
+  while (length(line) > 0 && !is_adif_eor(line))  {
     fields <- append(fields, line)
     line = readLines(conn, n = 1)
   }

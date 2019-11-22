@@ -4,8 +4,10 @@ Title: Amateur Radio Data Interchange Format files
 Version: 0.1.0
 Author: Richard Morrisey (AE4OK)
 Maintainer: The package maintainer <ae4ok@arrl.net>
-Description: The 'adif' package parses information in an ADIF file. It loads this format into dataframes
-License: No License
+Description: This package works with Amateur Radio Data Interchange Format (ADIF) v1.0 files.
+  It will parse the content and perhaps load them into a dataframe. Additional helper functions
+  Will be made available.
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.0

@@ -7,7 +7,7 @@
 #' @keywords adif, tag
 #' @return a boolean:
 #' @export
-isEOH <- function(line) {
+is_adif_eoh <- function(line) {
   grepl("<EOH>", toupper(line))
 }
 
@@ -20,7 +20,7 @@ isEOH <- function(line) {
 #' @keywords adif, tag
 #' @return a boolean:
 #' @export
-isEOR <- function(line) {
+is_adif_eor <- function(line) {
     grepl("<EOR>", toupper(line))
 }
 

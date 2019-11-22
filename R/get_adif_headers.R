@@ -10,10 +10,10 @@
 #'
 #' src <- file.path(getwd(),"adif","tests","sample.adi")
 #' conn <- file(src, open="r")
-#' res <- getHeaders(conn)
+#' res <- get_adif_headers(conn)
 #' close(conn)
 #' res
-getHeaders <- function(conn) {
+get_adif_headers <- function(conn) {
   headers <- c()
   line = readLines(conn, n = 1)
   while (length(line) > 0 && !grepl("<", toupper(line))) {
